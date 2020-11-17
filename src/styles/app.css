@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+:root {
+  --primary-color: #ff00ff;
+  --primary-color-rgb: 255,0,255;
+
+  font-size: 13px;
+}
+
+#app {
+  background-color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+}
+
+.full-flex-layout {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  display: flex;
+}
+
+.button {
+  border-radius: 0.2rem;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+}

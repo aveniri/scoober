@@ -1,9 +1,12 @@
 import React from "react";
+import Game from "./components/game/Game";
+import Header from "./components/header/Header";
 
 const App: React.FC = () => {
   return (
     <>
-      <h1>Hello World</h1>
+      <Header />
+      <Game />
     </>
   );
 };

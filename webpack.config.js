@@ -6,7 +6,7 @@ const isProduction = typeof NODE_ENV !== 'undefined' && NODE_ENV === 'production
 const mode = isProduction ? 'production' : 'development';
 const devtool = isProduction ? 'cheap-source-map' : 'inline-source-map';
 
-const cssModuleRegex = /\.module\.scss$/;
+const cssModuleRegex = /\.module\.css$/;
 
 module.exports = {
   mode,
@@ -40,21 +40,18 @@ module.exports = {
             options: { 
               importLoaders: 1, 
               modules: { mode: "local", localIdentName: "[path][name]__[local]--[hash:base64:5]" }
-              //modules: true,
             } 
           }, 
-          'postcss-loader',
-          'sass-loader'
+          'postcss-loader'
         ],
       },
       {
-        test: /\.(scss|css)$/,
+        test: /\.css$/,
         exclude: cssModuleRegex,
         loaders: [
           'style-loader', 
           'css-loader',
-          'postcss-loader',
-          'sass-loader'
+          'postcss-loader'
         ],
       },
       {

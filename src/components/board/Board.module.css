@@ -1,0 +1,15 @@
+.board {
+  background-color: gray;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: background 0.3s ease-out 0.1s;
+  padding-top: 40px;
+}
+
+.scrollIntoViewDiv {
+  margin-top: 40px;
+}
