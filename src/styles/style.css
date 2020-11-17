@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+:root {
+  --color-primary-rgb: 80, 170, 221;
+  --color-background-rgb: 245, 247, 250;
+  --color-white-rgb: 255, 255, 255;
+  --color-dark-rgb: 0,0,0;
+  --color-gray-rgb: 170, 170, 170;
+  --color-darkgray-rgb: 128, 128, 128;
+  --color-lightgray-rgb: 238, 238, 238;
+
+  font-size: 13px;
+}
+
+#root {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+}

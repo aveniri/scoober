@@ -4,13 +4,19 @@
   right: 0;
   left: 0;
   padding: 10px 20px;
-  height: 70px;
-  border-bottom: 1px solid #bbbbbb;
-  box-shadow: 0 -1px 2px 1px #aaaaaa;
+  height: 80px;
+  border-bottom: 1px solid rgb(var(--color-gray-rgb));
+  box-shadow: 0 -1px 2px 1px rgba(var(--color-gray-rgb), .9);
   z-index: 2;
-  background-color: lightgray;
+  background: rgb(var(--color-primary-rgb));
+  color: rgb(var(--color-white-rgb));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title {
-  font-size: 3em;
+  font-weight: 500;
+  font-size: 2em;
+  line-height: 1.5em;
 }

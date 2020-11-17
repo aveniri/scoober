@@ -1,10 +1,9 @@
-.Game {
+.app {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   position: relative;
   padding-top: 80px;
   height: 100vh;
-  
-  background-color: aquamarine;
+  background-color: rgb(var(--color-background-rgb));
 }

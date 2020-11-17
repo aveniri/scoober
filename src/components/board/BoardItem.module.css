@@ -1,3 +1,50 @@
 .boardItem {
-  background-color: blue;
+  box-sizing: border-box;
+  display: flex;
+  padding: 20px 80px 20px 10px;
+} 
+
+.player {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.player .playerCircle {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(var(--color-darkgray-rgb));
+}
+
+.content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.content .inputCircle {
+  width: 70px;
+  height: 70px;
+}
+
+.content .operation {
+  background-color: rgb(var(--color-white-rgb));
+  border: 1px solid rgb(var(--color-white-rgb));
+  border-radius: 0.2rem;
+  box-shadow: 2px 2px 8px rgba(var(--color-gray-rgb), 0.2);
+  font-size: 1em;
+  padding: 10px 15px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.boardItem.rightAlignment {
+  flex-flow: row-reverse;
+  padding: 20px 10px 20px 80px;
+}
+
+.boardItem.rightAlignment .content {
+  align-items: flex-end;
 } 

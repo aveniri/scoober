@@ -15,9 +15,17 @@ const initialState = {
 const GameReducer = (state: GameState = initialState, action: GameDispatchTypes): GameState => {
   switch (action.type) {
     case GameActions.NEXT_MOVE: {
+      const nextMove = action.payload as Move;
+      const gameStatus =
+        nextMove.result > 1
+          ? GameStatuses.PROGRESS
+          : nextMove.player === Players.ME
+          ? GameStatuses.WON
+          : GameStatuses.LOST;
       return {
         ...state,
-        moves: state.moves.concat(action.payload as Move),
+        moves: state.moves.concat(nextMove),
+        status: gameStatus,
       };
     }
     case GameActions.OVER: {

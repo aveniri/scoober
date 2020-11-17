@@ -1,21 +1,27 @@
 import React from "react";
 import { Move, Players } from "../../store/game/GameTypes";
+import Circle from "../common/circle/Circle";
 import styles from "./BoardItem.module.css";
 
 interface Props {
   move: Move;
 }
 const BoardItem: React.FC<Props> = ({ move }: Props) => {
-  const { input: input, remainder, result, player } = move;
+  const { input, remainder, result, player } = move;
   const operator = input > 0 ? "+" : "";
-  const formula = `[ ( ${operator}${input} + ${remainder} ) / 3 ] = ${result}`;
-  const alignmentStyle = player === Players.ME ? styles.leftAlignment : styles.rightAlignment;
+  const inputString = `${operator}${input}`;
+  const formula = `[ ( ${inputString} + ${remainder} ) / 3 ] = ${result}`;
+  const alignmentStyle = player !== Players.ME ? styles.rightAlignment : "";
   return (
     <div className={alignmentStyle + " " + styles.boardItem}>
-      <div>
-        <pre>{formula}</pre>
+      <div className={styles.player}>
+        <Circle className={styles.playerCircle}>ME</Circle>
       </div>
-      <span>{result}</span>
+      <div className={styles.content}>
+        <Circle className={styles.inputCircle}>{inputString}</Circle>
+        <div className={styles.operation}>{formula}</div>
+        <div className={styles.operation}>{result}</div>
+      </div>
     </div>
   );
 };

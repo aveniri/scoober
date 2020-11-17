@@ -20,7 +20,7 @@ const Board: React.FC<Props> = ({ moves }: Props) => {
   useEffect(scrollToBottom, [moves]);
 
   return (
-    <div className={styles.Board}>
+    <div className={styles.board}>
       {renderMessages}
       <div className={styles.scrollIntoViewDiv} ref={messagesEndRef}>
         &nbsp;

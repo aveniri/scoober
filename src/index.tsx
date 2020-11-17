@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import Store from "./store/Store";
 import App from "./App";
 import "./styles/normalize.css";
-import "./styles/app.css";
+import "./styles/style.css";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,5 +12,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById("app"),
+  document.getElementById("root"),
 );
