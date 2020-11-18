@@ -31,7 +31,7 @@
 
 .content .operation {
   background-color: rgb(var(--color-white-rgb));
-  border: 1px solid rgb(var(--color-white-rgb));
+  border: none;
   border-radius: 0.2rem;
   box-shadow: 2px 2px 8px rgba(var(--color-gray-rgb), 0.2);
   font-size: 1em;

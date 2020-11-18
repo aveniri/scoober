@@ -1,0 +1,17 @@
+.button {
+  padding: 20px 50px;
+  height: 70px;
+  border-radius: 35px;
+  background: rgba(var(--color-white-rgb), 1);
+  box-shadow: 0 0 10px rgba(var(--color-darkgray-rgb), 0.4);
+  border: none;
+  color: rgb(var(--color-primary-rgb));
+  font-size: 2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: rgba(var(--color-white-rgb), .95);
+  color: rgba(var(--color-primary-rgb), .9);
+}

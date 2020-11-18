@@ -17,3 +17,8 @@
 .actionButton:hover {
   background: rgba(var(--color-primary-rgb), 1);
 }
+
+.actionsBar.disabled .actionButton {
+  background: rgba(var(--color-primary-rgb), .4);
+  cursor: default;
+}
