@@ -2,6 +2,8 @@ import React from "react";
 import { Move, Players } from "../../store/game/GameTypes";
 import Circle from "../common/circle/Circle";
 import styles from "./BoardItem.module.css";
+import playerIcon from "../../assets/images/player.png";
+import opponentIcon from "../../assets/images/opponent.png";
 
 interface Props {
   move: Move;
@@ -15,7 +17,9 @@ const BoardItem: React.FC<Props> = ({ move }: Props) => {
   return (
     <div className={alignmentStyle + " " + styles.boardItem}>
       <div className={styles.player}>
-        <Circle className={styles.playerCircle}>ME</Circle>
+        <Circle className={styles.playerCircle}>
+          <img src={player === Players.ME ? playerIcon : opponentIcon} alt="icon" />
+        </Circle>
       </div>
       <div className={styles.content}>
         <Circle className={styles.inputCircle}>{inputString}</Circle>

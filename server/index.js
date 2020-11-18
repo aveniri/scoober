@@ -29,7 +29,6 @@ const calculate = (input, remainder) => {
 let usersOnline = 0;
 
 io.on('connection', (socket) => {
-  console.log('socket id connection --->>>');
   ++usersOnline;
   socket.playerId = Date.now();
 
@@ -47,33 +46,35 @@ io.on('connection', (socket) => {
     return nextMove;
   }
 
-  socket.on('next_move', ({input = 0, newGame = false}) => {
+  socket.on('next_move', ({input = 0, firstMove = false}) => {
     let nextMove;
-    if(newGame) {
+    if(firstMove) {
       moves = [];
       const remainder = Math.round(Math.random() * 100 + 40);
-      nextMove = getNextMove(input, remainder, socket.playerId);
+      const newMove = getNextMove(input, remainder, socket.playerId);
+      nextMove = {
+        ...newMove,
+        firstMove: true
+      }
     } else {
       const { result: remainder } = moves.slice(-1)[0] || {};
       nextMove = getNextMove(input, remainder, socket.playerId);
     }
 
-    // my move
+    // send back my calculated move
     socket.emit('next_move', nextMove);
 
-    if(usersOnline < 2) {
+    if(usersOnline > 1) {
+      socket.broadcast.emit('opponent_next_move', nextMove);
+    } else if(nextMove.result > 1) {
       const { result: remainder } = moves.slice(-1)[0] || {};
       const randomInput = randomInputPick([-1, 0, 1]);
-      const newMove = getNextMove(randomInput, remainder, -1);
-      socket.emit('computer_next_move', newMove);
-    } else {
-      socket.broadcast.emit('opponent_next_move', nextMove);
+      const randomMove = getNextMove(randomInput, remainder, -1);
+      socket.emit('computer_next_move', randomMove);
     }
   });
 
-  // when the user disconnects.. perform this
   socket.on('disconnect', () => {
-    console.log('socket disconnect <<<===');
     --usersOnline;
     socket.broadcast.emit('opponent_status', "offline");
   });

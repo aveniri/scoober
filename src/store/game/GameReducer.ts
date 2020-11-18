@@ -1,8 +1,8 @@
-import { GameStatuses, GameActions, GameDispatchTypes, Move, GameState, Players, Connection } from "./GameTypes";
+import { GameStatus, GameActions, GameDispatchTypes, Move, GameState, Players, Connection } from "./GameTypes";
 
 const initialState = {
   moves: [],
-  status: GameStatuses.ENTRY,
+  status: GameStatus.ENTRY,
   playerTurn: Players.ME,
   playerId: 0,
   opponentOnline: false,
@@ -24,29 +24,17 @@ const GameReducer = (state: GameState = initialState, action: GameDispatchTypes)
         opponentOnline: action.payload as boolean,
       };
     }
-    case GameActions.START:
     case GameActions.NEXT_MOVE: {
       const nextMove = { ...(action.payload as Move) };
-      nextMove.player = nextMove.playerId === state.playerId ? Players.ME : Players.OPPONENT;
 
-      const gameStatus =
-        nextMove.result > 1
-          ? GameStatuses.PLAYING
-          : nextMove.player === Players.ME
-          ? GameStatuses.WON
-          : GameStatuses.LOST;
+      const status =
+        nextMove.result > 1 ? GameStatus.PLAYING : nextMove.player === Players.ME ? GameStatus.WON : GameStatus.LOST;
 
       return {
         ...state,
-        moves: state.moves.concat(nextMove),
-        status: gameStatus,
+        moves: nextMove.firstMove ? [nextMove] : state.moves.concat(nextMove),
+        status,
         playerTurn: nextMove.player === Players.ME ? Players.OPPONENT : Players.ME,
-      };
-    }
-    case GameActions.OVER: {
-      return {
-        ...state,
-        status: action.payload as GameStatuses,
       };
     }
     default:

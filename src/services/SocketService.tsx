@@ -5,9 +5,7 @@ import { connectionStatus, nextMove, opponentStatus } from "../store/game/GameAc
 import { Connection, Move, Players } from "../store/game/GameTypes";
 
 export enum SocketEvents {
-  ENTER = "enter",
   CONNECTED = "connected",
-  DISCONNECT = "disconnect",
   NEXT_MOVE = "next_move",
   OPPONENT_STATUS = "opponent_status",
   OPPONENT_NEXT_MOVE = "opponent_next_move",
@@ -37,7 +35,10 @@ export const initSockets = (dispatch: Dispatch): void => {
   });
 
   socket.on(SocketEvents.COMPUTER_NEXT_MOVE, (payload: Move) => {
-    dispatch(nextMove({ ...payload, player: Players.OPPONENT }));
+    //SIMULATE REAL USER WITH DELAY
+    setTimeout(() => {
+      dispatch(nextMove({ ...payload, player: Players.OPPONENT }));
+    }, 2000);
   });
 };
 

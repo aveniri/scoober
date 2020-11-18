@@ -1,0 +1,37 @@
+.statusModal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(var(--color-primary-rgb), .5);
+  background-image: linear-gradient(to bottom, rgba(var(--color-primary-rgb), .3), rgba(var(--color-primary-rgb), 1));
+  color: rgb(var(--color-white-rgb));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: flyIn .7s ease-in forwards;
+  opacity: 0;
+  transform: scale(.7);
+  filter: blur(3px);
+}
+
+@keyframes flyIn {
+  to { 
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.statusModal h1 { 
+  font-size: 3em;
+}
+
+@media (max-width: 767px) {
+  .statusModal img {
+    width: 70%;
+  }
+}

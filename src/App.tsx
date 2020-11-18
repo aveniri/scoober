@@ -6,8 +6,8 @@ import Board from "./components/board/Board";
 import ActionsBar from "./components/actionsbar/ActionsBar";
 import styles from "./App.module.css";
 import { socket, initSockets, SocketEvents } from "./services/SocketService";
-import { GameStatuses, Players } from "./store/game/GameTypes";
-import GameStatus from "./components/gamestatus/GameStatus";
+import { GameStatus, Players } from "./store/game/GameTypes";
+import StatusModal from "./components/statusmodal/StatusModal";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,20 +26,18 @@ const App: React.FC = () => {
   };
 
   const onStart = () => {
-    socket.emit(SocketEvents.NEXT_MOVE, { input: 0, newGame: true });
+    socket.emit(SocketEvents.NEXT_MOVE, { input: 0, firstMove: true });
   };
 
   return (
     <main className={styles.app}>
       <Header />
-      {status === GameStatuses.PLAYING ? (
-        <>
-          <Board moves={moves} />
-          <ActionsBar onClick={(input) => onClick(input)} disabled={playerTurn === Players.OPPONENT} />
-        </>
-      ) : (
-        <GameStatus onStart={onStart} status={status} opponentOnline={opponentOnline} />
+      {status !== GameStatus.PLAYING && (
+        <StatusModal onStart={onStart} status={status} opponentOnline={opponentOnline} />
       )}
+
+      <Board moves={moves} />
+      <ActionsBar onClick={(input) => onClick(input)} disabled={playerTurn === Players.OPPONENT} />
     </main>
   );
 };

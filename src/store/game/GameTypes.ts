@@ -2,14 +2,11 @@ import { Action } from "redux";
 
 export enum GameActions {
   CONNECTED = "game/connected",
-  DISCONNECTED = "game/disconnected",
   OPPONENT_STATUS = "game/opponent_status",
-  START = "game/start",
-  OVER = "game/over",
   NEXT_MOVE = "game/next_move",
 }
 
-export enum GameStatuses {
+export enum GameStatus {
   ENTRY,
   PLAYING,
   WON,
@@ -25,6 +22,7 @@ export interface Move {
   input: number;
   remainder: number;
   result: number;
+  firstMove?: boolean;
   player?: Players;
   playerId?: number;
 }
@@ -36,7 +34,7 @@ export interface Connection {
 
 export interface GameState extends Connection {
   moves: Array<Move>;
-  status: GameStatuses;
+  status: GameStatus;
   playerTurn: Players;
 }
 
@@ -50,14 +48,9 @@ export interface OpponentStatus extends Action {
   payload: boolean;
 }
 
-export interface GameStatus extends Action {
-  type: GameActions;
-  payload: GameStatuses;
-}
-
 export interface NextMove extends Action {
   type: GameActions;
   payload: Move;
 }
 
-export type GameDispatchTypes = ConnectionStatus | OpponentStatus | GameStatus | NextMove;
+export type GameDispatchTypes = ConnectionStatus | OpponentStatus | NextMove;
